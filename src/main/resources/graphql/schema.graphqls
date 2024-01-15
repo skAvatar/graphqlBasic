@@ -22,6 +22,4 @@ type Mutation{
     create(name: String, team: Team): Player
     update(id: ID, name: String, team: Team): Player
     deleteOne(id: ID): Player
-
-
 }

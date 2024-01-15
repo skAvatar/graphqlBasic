@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class PlayerService {
 
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
     AtomicInteger id = new AtomicInteger(0);
 
@@ -35,11 +34,14 @@ public class PlayerService {
     }
 
     public Player updateOne(Integer id,String name, Team team){
-        Player uptatedPlayer = new Player(id, name, team);
+        Player playerDB = Player.builder()
+                .id(id)
+                .name(name)
+                .team(team).build();
 
-        players.set(id - 1, uptatedPlayer);
+        players.set(id - 1, playerDB);
 
-        return uptatedPlayer;
+        return playerDB;
     }
 
 
